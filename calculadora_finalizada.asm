@@ -1,14 +1,14 @@
 .data
-    opc: .asciiz "Escolha uma opção a seguir\n| A - Adição| S - Subtração | D - Divisão | M - Multiplicação | P - Potenciação |\n|Escolha uma opção: "
-    resul: .asciiz "O resultado é: "
-    msg_erro: .asciiz "Erro! Divisão por zero.\n"
-    num1: .asciiz "\nDigite o primeiro número: "
-    num2: .asciiz "Digite o segundo número: "
-    soma: .asciiz "\n|-- Operação escolhida - SOMA --|\n"
-    subt: .asciiz "\n|-- Operação escolhida - SUBTRAÇÃO |\n"
-    multip: .asciiz "\n|-- Operação escolhida - MULTIPLICAÇÃO --|\n"
-    divi: .asciiz "\n|-- Operação escolhida - DIVISÃO --|\n"
-    potenc: .asciiz "\n|-- Operação escolhida - POTENCIALIZAÇÃO --|\n"
+    opc: .asciiz "Escolha uma opÃ§Ã£o a seguir\n| A - AdiÃ§Ã£o| S - SubtraÃ§Ã£o | D - DivisÃ£o | M - MultiplicaÃ§Ã£o | P - PotenciaÃ§Ã£o |\n|Escolha uma opÃ§Ã£o: "
+    resul: .asciiz "O resultado Ã©: "
+    msg_erro: .asciiz "Erro! DivisÃ£o por zero.\n"
+    num1: .asciiz "\nDigite o primeiro nÃºmero: "
+    num2: .asciiz "Digite o segundo nÃºmero: "
+    soma: .asciiz "\n|-- OperaÃ§Ã£o escolhida - SOMA --|\n"
+    subt: .asciiz "\n|-- OperaÃ§Ã£o escolhida - SUBTRAÃ‡ÃƒO |\n"
+    multip: .asciiz "\n|-- OperaÃ§Ã£o escolhida - MULTIPLICAÃ‡ÃƒO --|\n"
+    divi: .asciiz "\n|-- OperaÃ§Ã£o escolhida - DIVISÃƒO --|\n"
+    potenc: .asciiz "\n|-- OperaÃ§Ã£o escolhida - POTENCIALIZAÃ‡ÃƒO --|\n"
 
 
 .text
@@ -23,14 +23,14 @@ menu_loop:
     syscall
     move $t0, $v0
     
-    # Escolhas em maiúsculo
+    # Escolhas em maiÃºsculo
     beq $t0, 65, adicao
     beq $t0, 83, subtracao
     beq $t0, 68, divisao
     beq $t0, 77, multi
     beq $t0, 80, poten
     
-    # Escolhas em minúsculo
+    # Escolhas em minÃºsculo
     beq $t0, 97, adicao
     beq $t0, 115, subtracao
     beq $t0, 100, divisao
@@ -39,13 +39,13 @@ menu_loop:
     
     j exit
 
-adicao:     # Adição
-    # Exibe qual operação está sendo realizada
+adicao:     # AdiÃ§Ã£o
+    # Exibe qual operaÃ§Ã£o estÃ¡ sendo realizada
     li $v0, 4
     la $a0, soma
     syscall
 
-    # Chamando o primeiro número
+    # Chamando o primeiro nÃºmero
     li $v0, 4
     la $a0, num1
     syscall
@@ -53,7 +53,7 @@ adicao:     # Adição
     syscall
     move $t1, $v0
 
-    # Chamando o segundo número
+    # Chamando o segundo nÃºmero
     li $v0, 4
     la $a0, num2
     syscall
@@ -72,8 +72,8 @@ adicao:     # Adição
     syscall
     j menu_loop
 
-subtracao:  # Subtração
-    # Chamando o primeiro número
+subtracao:  # SubtraÃ§Ã£o
+    # Chamando o primeiro nÃºmero
     li $v0, 4
     la $a0, num1
     syscall
@@ -81,7 +81,7 @@ subtracao:  # Subtração
     syscall
     move $t1, $v0
 
-    # Chamando o segundo número
+    # Chamando o segundo nÃºmero
     li $v0, 4
     la $a0, num2
     syscall
@@ -100,8 +100,8 @@ subtracao:  # Subtração
     syscall
     j menu_loop
 
-divisao:    # Divisão
-    # Chamando o primeiro número
+divisao:    # DivisÃ£o
+    # Chamando o primeiro nÃºmero
     li $v0, 4
     la $a0, num1
     syscall
@@ -109,7 +109,7 @@ divisao:    # Divisão
     syscall
     move $t1, $v0
 
-    # Chamando o segundo número
+    # Chamando o segundo nÃºmero
     li $v0, 4
     la $a0, num2
     syscall
@@ -117,7 +117,7 @@ divisao:    # Divisão
     syscall
     move $t2, $v0
 
-    # Verifica se o divisor é zero
+    # Verifica se o divisor Ã© zero
     beqz $t2, div_erro
 
     # Calculando e imprimindo o resultado
@@ -137,8 +137,8 @@ div_erro:
     syscall
     j menu_loop
 
-multi:      # Multiplicação
-    # Chamando o primeiro número
+multi:      # MultiplicaÃ§Ã£o
+    # Chamando o primeiro nÃºmero
     li $v0, 4
     la $a0, num1
     syscall
@@ -146,7 +146,7 @@ multi:      # Multiplicação
     syscall
     move $t1, $v0
 
-    # Chamando o segundo número
+    # Chamando o segundo nÃºmero
     li $v0, 4
     la $a0, num2
     syscall
@@ -165,8 +165,8 @@ multi:      # Multiplicação
     syscall
     j menu_loop
 
-poten:      # Potenciação
-    # Chamando o primeiro número
+poten:      # PotenciaÃ§Ã£o
+    # Chamando o primeiro nÃºmero
     li $v0, 4
     la $a0, num1
     syscall
@@ -174,7 +174,7 @@ poten:      # Potenciação
     syscall
     move $t1, $v0
 
-    # Chamando o segundo número
+    # Chamando o segundo nÃºmero
     li $v0, 4
     la $a0, num2
     syscall
@@ -186,7 +186,7 @@ poten:      # Potenciação
     li $t3, 1
 
     cont_pot:
-    beqz $t2, end   # Se o expoente é zero, sair do loop
+    beqz $t2, end   # Se o expoente Ã© zero, sair do loop
 
     # Multiplica o resultado pela base
     mul $t3, $t3, $t1
@@ -204,5 +204,5 @@ poten:      # Potenciação
     j menu_loop
 
 exit:
-    li $v0, 10
+    j main
     syscall
